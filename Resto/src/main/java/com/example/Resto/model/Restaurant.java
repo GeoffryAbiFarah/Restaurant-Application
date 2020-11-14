@@ -9,7 +9,7 @@ import java.util.UUID;
 public class Restaurant {
     @Id
     @Column(name = "id")
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @Column(name = "restaurant_name")
     private String name;

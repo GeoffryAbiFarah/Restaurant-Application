@@ -7,14 +7,55 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class RestaurantService {
 
     @Autowired
-    RestaurantRepository restaurantRepository ;
+    private RestaurantRepository restaurantRepository ;
 
     public List<Restaurant> getAllRestaurants (){
         return restaurantRepository.findAll();
     }
+
+    public List<Restaurant> getRestaurantByNameAndType (String name, String type){
+        return restaurantRepository.findByNameIgnoreCaseAndTypeIgnoreCase(name,type);
+    }
+
+    public List<Restaurant> getRestaurantByType (String type){
+        return restaurantRepository.findRestaurantByTypeIgnoreCase(type);
+    }
+
+    public List<Restaurant> getVisitedRestaurants (boolean visited){
+        return restaurantRepository.visitedSearch(visited);
+    }
+
+    public void updateVisitStatus (Restaurant newResto){
+        restaurantRepository.save(newResto);
+    }
 }
+
+
+//    public void addRestaurant (Restaurant newResto) {
+//        restaurantRepository.save(newResto);
+//    }
+//
+//    public void updateRestaurant (Restaurant newResto) {
+//        restaurantRepository.save(newResto);
+//    }
+
+
+//    public Restaurant getRestaurantById (UUID id){
+//        return restaurantRepository.findById(id).orElse(null);
+//    }
+//
+//    public List<Restaurant> searchRestaurant (String name, String type){
+//        return restaurantRepository.restoSearch(name, type);
+//    }
+
+//Method not allowed
+//    public void deleteResto (Restaurant resto){
+//        restaurantRepository.delete(resto);
+//    }
