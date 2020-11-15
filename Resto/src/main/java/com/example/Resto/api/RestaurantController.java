@@ -1,6 +1,7 @@
 package com.example.Resto.api;
 
 import com.example.Resto.model.Restaurant;
+import com.example.Resto.model.VisitedRestaurant;
 import com.example.Resto.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,25 +22,39 @@ public class RestaurantController {
         return restoService.getAllRestaurants();
     }
 
-    @GetMapping("/restaurantByNameAndType")
+    @GetMapping("/restaurant-by-name-and-type")
     public List<Restaurant> getRestaurantByNameAndType(@RequestParam String name, @RequestParam String type){
         return restoService.getRestaurantByNameAndType(name,type);
     }
 
-    @GetMapping("/restaurantByType")
+    @GetMapping("/restaurant-by-type")
     public List<Restaurant> getRestaurantByType(@RequestParam String type){
         return restoService.getRestaurantByType(type);
     }
 
-    @GetMapping("/restaurantVisited")
-    public List<Restaurant> getVisitedRestaurants(@RequestParam boolean visited){
-        return restoService.getVisitedRestaurants(visited);
+    @GetMapping("/visited-restaurants")
+    public List<VisitedRestaurant> getVisitedRestaurants(){
+        return restoService.getAllVisitedRestaurant();
     }
 
-    @PutMapping("/restaurantVisitStatus")
-    public void updateVisitStatus(@RequestBody Restaurant newResto){
-        restoService.updateVisitStatus(newResto);
-    }
+}
+
+//    @PostMapping("/add=visited-restaurant")
+//    public void addVisitedRestaurant(@RequestBody Restaurant visitedResto){
+//        restoService.addVisitedRestaurant(visitedResto);}
+
+//    @GetMapping("/restaurantVisited")
+//    public List<Restaurant> getVisitedRestaurants(@RequestParam boolean visited){
+//        return restoService.getVisitedRestaurants(visited);
+//    }
+//
+//    @PutMapping("/restaurantVisitStatus")
+//    public void updateVisitStatus(@RequestBody Restaurant newResto){
+//        restoService.updateVisitStatus(newResto);}
+
+
+
+
 
 //    @GetMapping("/restaurantSearch")
 //    public List<Restaurant> searchRestaurants(@RequestParam String name, @RequestParam String type){
@@ -103,4 +118,4 @@ public class RestaurantController {
 //        return " Welcome " + name + "With id= "+id;
 //    }
 
-}
+

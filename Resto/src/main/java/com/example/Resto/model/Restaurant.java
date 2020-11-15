@@ -23,10 +23,6 @@ public class Restaurant {
     private double cost;
     @Column(name = "restaurant_image")
     private String image_path;
-    @Column(name = "visited")
-    private boolean visited;
-    @Column(name = "visit_date")
-    private String date;
 
     public Restaurant(UUID id, String name, String type, String address, int number, double cost, String image_path, boolean visited, String date) {
         this.id = id;
@@ -36,8 +32,6 @@ public class Restaurant {
         this.number = number;
         this.cost = cost;
         this.image_path = image_path;
-        this.visited = visited;
-        this.date = date;
     }
 
     public Restaurant(){}
@@ -68,13 +62,5 @@ public class Restaurant {
 
     public String getImage_path() {
         return image_path;
-    }
-
-    public boolean isVisited() {
-        return visited;
-    }
-
-    public String getDate() {
-        return date;
     }
 }
