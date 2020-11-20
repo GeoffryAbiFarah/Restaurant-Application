@@ -38,38 +38,3 @@ public class RestaurantService {
     }
 
 }
-
-
-
-//    public List<Restaurant> getVisitedRestaurants (boolean visited){
-//        return restaurantRepository.visitedSearch(visited);
-//    }
-//
-//    public void updateVisitStatus (Restaurant newResto){
-//        restaurantRepository.save(newResto);
-//    }
-
-
-
-
-//    public void addRestaurant (Restaurant newResto) {
-//        restaurantRepository.save(newResto);
-//    }
-//
-//    public void updateRestaurant (Restaurant newResto) {
-//        restaurantRepository.save(newResto);
-//    }
-
-
-//    public Restaurant getRestaurantById (UUID id){
-//        return restaurantRepository.findById(id).orElse(null);
-//    }
-//
-//    public List<Restaurant> searchRestaurant (String name, String type){
-//        return restaurantRepository.restoSearch(name, type);
-//    }
-
-//Method not allowed
-//    public void deleteResto (Restaurant resto){
-//        restaurantRepository.delete(resto);
-//    }

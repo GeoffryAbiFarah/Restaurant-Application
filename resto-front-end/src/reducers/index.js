@@ -1,10 +1,10 @@
-import counterReducer from './counter';
-import loggedReducer from './isLogged';
 import {combineReducers} from 'redux';
+import restaurantsReducer from './restaurantsReducer';
+import changePageReducer from './changePageReducer';
 
-const allReducers = combineReducers({
-    counter: counterReducer,
-    isLogged: loggedReducer
+const rootReducer = combineReducers({
+    restaurantsReducer,
+    changePageReducer
 });
 
-export default allReducers;
+export default rootReducer;

@@ -1,22 +1,17 @@
-import {useSelector, useDispatch} from 'react-redux';
-import {increment, decrement} from './actions';
+import {Provider} from 'react-redux';
+import NavBar from './components/NavBar';
+import Container from './components/Container';
+
+
+import store from './store';
 
 function App() {
-  const counter = useSelector(state => state.counter);
-  const isLogged = useSelector(state => state.isLogged);
-
-  const dispatch = useDispatch();
-
   return (
-    <div>
-      <h1>Counter: {counter}</h1>
-
-      <button onClick={() => dispatch(increment(5))}>+</button>
-      <button onClick={() => dispatch(decrement())}>-</button>
-
-    {isLogged ? <h3>Valuable info i shouldnt see if i am not logged in</h3> : 'Nothing'}
-      
+    <Provider store={store}>
+      <div>
+        <Container/>
     </div>
+    </Provider>
   );
 }
 
