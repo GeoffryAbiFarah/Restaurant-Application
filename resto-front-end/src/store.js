@@ -1,8 +1,14 @@
-import { createStore} from 'redux';
+import { createStore, applyMiddleware} from 'redux';
 import rootReducer from './reducers';
+import createSagaMiddleware from 'redux-saga';
+import {watchPage1 , watchVisited} from './sagas/saga';
 
 
-const store = createStore(rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); //extension redux devtools
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware)); 
+
+sagaMiddleware.run(watchPage1);
+sagaMiddleware.run(watchVisited);
 
 export default store;
