@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {requestVisited} from '../actions/visitedAction';
 import {REQUEST_VISITED_RESTOS} from '../types';
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -22,6 +21,7 @@ function VisitedRestaurants() {
             </div>
             
         ))}
+        
     </div>
   );
 }

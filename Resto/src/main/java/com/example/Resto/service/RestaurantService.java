@@ -33,8 +33,15 @@ public class RestaurantService {
         return restaurantRepository.findRestaurantByTypeIgnoreCase(type);
     }
 
+    public List<Restaurant> getRestaurantByName (String name){
+        return restaurantRepository.findRestaurantByNameIgnoreCase(name);
+    }
+
     public List<VisitedRestaurant> getAllVisitedRestaurant (){
         return visitedRestaurantRepositary.findAll();
     }
 
+    public void addVisitedRestaurant (VisitedRestaurant visitedResto) {
+        visitedRestaurantRepositary.save(visitedResto);
+    }
 }

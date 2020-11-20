@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {REQUEST_ALL_RESTOS} from '../types';
 import {useSelector, useDispatch} from 'react-redux';
 
-function Restaurants() {
+function AllRestaurants() {
 
     const allRestaurants = useSelector((state) => state.allRestoReducer);
 
@@ -25,4 +25,4 @@ function Restaurants() {
   );
 }
 
-export default Restaurants;
+export default AllRestaurants;

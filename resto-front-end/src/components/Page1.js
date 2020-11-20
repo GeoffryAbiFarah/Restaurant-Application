@@ -1,13 +1,14 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import Restaurants from './Restaurants';
+import AllRestaurants from './AllRestaurants';
 
 function Page1() {
   return (
     <div>
       <SearchBar/>
-      <Restaurants/>
       PAGE1
+      <AllRestaurants/>
+      
     </div>
   );
 }

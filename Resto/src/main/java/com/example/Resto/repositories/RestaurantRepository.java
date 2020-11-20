@@ -17,4 +17,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, UUID> {
 
     public List<Restaurant> findRestaurantByTypeIgnoreCase (String type);
 
+    public List<Restaurant> findRestaurantByNameIgnoreCase (String name);
+
 }
