@@ -17,7 +17,7 @@ function VisitedRestaurants() {
         {visited.map(resto => (
             <div key={resto.id}>
                 <h1>{resto.name}</h1>
-                <p>{resto.type }</p>
+                <p>{resto.date }</p>
             </div>
             
         ))}
