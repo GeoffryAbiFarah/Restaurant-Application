@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {REQUEST_ALL_RESTOS} from '../types';
 import {useSelector, useDispatch} from 'react-redux';
 import {addVisited} from '../actions/addVisited'
+import {requestAll} from '../actions/restaurantsAction'
 
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -16,7 +17,7 @@ function AllRestaurants() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch({type: REQUEST_ALL_RESTOS})
+        dispatch(requestAll())
     })
 
     const handleChange = (e) => {
@@ -56,7 +57,6 @@ function AllRestaurants() {
             </Grid> 
             </div>
         ))}
-        
         
         </Grid>
         

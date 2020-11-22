@@ -13,16 +13,49 @@ export const fetchDataAll = async () => {
 
 //Searched restaurants by name and type API CALL
 // "/restaurant-by-name-and-type"
-export const fetchDataSearch = async () => {
+export const fetchDataSearch = async (param) => {
     try {
-        const resp = await fetch("/restaurant-by-name-and-type");
+        let nameArray = param.name.split(" ");
+        let nameParam = nameArray.join("+");
+        let typeParam = param.type;
+        const resp = await fetch(`/restaurant-by-name-and-type?name=${nameParam}&type=${typeParam}`);
         const data = await resp.json();
+        console.log(resp)
         return data;
     }
     catch(e) {
         console.log(e)
     }
 }
+
+
+export const fetchDataSearchName = async (param) => {
+    try {
+        let nameArray = param.name.split(" ");
+        let nameParam = nameArray.join("+");
+        const resp = await fetch(`/restaurant-by-name?name=${nameParam}`);
+        const data = await resp.json();
+        console.log(resp)
+        return data;
+    }
+    catch(e) {
+        console.log(e)
+    }
+}
+
+export const fetchDataSearchType = async (param) => {
+    try {
+        let typeParam = param.type;
+        const resp = await fetch(`/restaurant-by-type?type=${typeParam}`);
+        const data = await resp.json();
+        console.log(resp)
+        return data;
+    }
+    catch(e) {
+        console.log(e)
+    }
+}
+
 
 
 

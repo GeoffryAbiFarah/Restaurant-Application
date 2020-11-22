@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import AllRestaurants from './AllRestaurants';
+import SearchedRestaurants from './SearchedRestaurants'
 
 function Page1() {
   return (
@@ -8,6 +9,8 @@ function Page1() {
       <SearchBar/>
       PAGE1
       <AllRestaurants/>
+      <hr/>
+      <SearchedRestaurants/>
       
     </div>
   );

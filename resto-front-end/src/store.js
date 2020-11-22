@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware} from 'redux';
 import rootReducer from './reducers';
 import createSagaMiddleware from 'redux-saga';
-import {watchPage1 , watchVisited, watchAll, watchChecked} from './sagas/saga';
+import {watchPage1 , watchVisited, watchAll, watchChecked, watchSearch} from './sagas/saga';
 
 
 const sagaMiddleware = createSagaMiddleware();
@@ -12,5 +12,6 @@ sagaMiddleware.run(watchPage1);
 sagaMiddleware.run(watchVisited);
 sagaMiddleware.run(watchAll);
 sagaMiddleware.run(watchChecked);
+sagaMiddleware.run(watchSearch);
 
 export default store;

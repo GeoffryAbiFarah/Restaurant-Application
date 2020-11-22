@@ -1,5 +1,5 @@
 import {takeEvery, put, takeLatest, call} from 'redux-saga/effects';
-import {fetchData, fetchDataAll, postVisited} from '../api';
+import {fetchData, fetchDataAll, postVisited, fetchDataSearch, fetchDataSearchName, fetchDataSearchType} from '../api';
 import {receiveVisited} from '../actions/visitedAction';
 import {REQUEST_VISITED_RESTOS, REQUEST_ALL_RESTOS, CHANGE_PAGE1, CHANGE_PAGE1_ASYNC, CHECKED, REQUEST_SEARCHED_RESTOS} from '../types';
 import { receiveAll } from '../actions/restaurantsAction';
@@ -15,20 +15,55 @@ export function* watchPage1(){
     yield takeEvery(CHANGE_PAGE1, page1Async);
 }
 
-//searched Restaurants (Page1)
+
+// //searched Restaurants (Page1)
+// function* searchAsync(action){
+//     try {
+//         const data = yield call (fetchDataSearch,action.data);
+//         yield put(receiveSearch(data));
+//     }catch (e){
+//         console.log(e)
+//     }
+// }
+
+// //searched by name Restaurants (Page1)
+// function* searchNameAsync(action){
+//     try {
+//         const data = yield call (fetchDataSearchName,action.data);
+//         yield put(receiveSearch(data));
+//     }catch (e){
+//         console.log(e)
+//     }
+// }
+
+//searched by type Restaurants (Page1)
 function* searchAsync(action){
     try {
-        const data = yield call (fetchDataSearch);
-        yield put(receiveSearch(data));
+        let searched = 0;
+    if (action.data.name === ""){
+      searched = yield call (fetchDataSearchType,action.data);
     }
-    catch (e){
+    else if (action.data.type === "" || action.data.type === "all"){
+      searched = yield call (fetchDataSearchName,action.data);
+    }
+    else{
+      searched = yield call (fetchDataSearch,action.data);
+    }
+
+    yield put(receiveSearch(searched));
+
+    }catch (e){
         console.log(e)
     }
 }
 
 export function* watchSearch(){
     yield takeLatest(REQUEST_SEARCHED_RESTOS, searchAsync);
+    // yield takeLatest(REQUEST_SEARCHED_NAME_RESTOS, searchNameAsync);
+    // yield takeLatest(REQUEST_SEARCHED_TYPE_RESTOS, searchTypeAsync);
 }
+
+
 
 //all Restaurants (Page 1)
 function* allAsync(action){
@@ -63,7 +98,7 @@ export function* watchVisited(){
 //add Visited Restaurants CheckBOx
 function* checkedAsync(action){
     try {
-        yield call (postVisited(action.restaurant));
+        yield call (postVisited,action.restaurant);
         yield put(addVisitedSuccess);
     }
     catch (e){
