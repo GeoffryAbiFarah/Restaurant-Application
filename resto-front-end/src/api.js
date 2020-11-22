@@ -29,6 +29,7 @@ export const fetchDataSearch = async (param) => {
 }
 
 
+
 export const fetchDataSearchName = async (param) => {
     try {
         let nameArray = param.name.split(" ");

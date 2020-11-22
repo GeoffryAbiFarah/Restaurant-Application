@@ -3,8 +3,7 @@ import {REQUEST_SEARCHED_RESTOS, RECEIVE_SEARCHED_RESTOS} from '../types';
 export const requestSearch = (data) => {
     return({
         type: REQUEST_SEARCHED_RESTOS,
-        data: data,
-        active: true
+        data: data
     })
 }
 

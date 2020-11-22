@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import AllRestaurants from './AllRestaurants';
-import SearchedRestaurants from './SearchedRestaurants'
+import Restaurant from './Restaurant';
 
 
 function Page1() {
@@ -10,9 +10,6 @@ function Page1() {
       <SearchBar/>
       <br/>
       <AllRestaurants/>
-      <hr/>
-      <SearchedRestaurants/>
-      <hr/>
       
     </div>
   );

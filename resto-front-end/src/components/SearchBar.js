@@ -2,6 +2,8 @@ import React from 'react';
 import {requestAll} from '../actions/restaurantsAction';
 import {requestSearch} from '../actions/searchAction';
 import {useDispatch} from 'react-redux';
+import {SHOW_ALL_RESTAURANTS,SHOW_SEARCHED_RESTAURANTS} from '../types';
+
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -24,9 +26,12 @@ const SearchBar = () => {
     let data = {name: name.value , type: type.value};
     
     if (name.value === "" && (type.value === "" || type.value=== "all")){
+      dispatch({type: SHOW_ALL_RESTAURANTS});
       dispatch(requestAll());
+      
     }
     else{
+      dispatch({type: SHOW_SEARCHED_RESTAURANTS});
       dispatch(requestSearch(data));
     }
 

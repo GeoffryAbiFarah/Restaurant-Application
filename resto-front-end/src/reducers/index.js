@@ -4,13 +4,15 @@ import changePageReducer from './changePageReducer';
 import visitedRestaurantsReducer from './visitedRestaurantsReducer';
 import addVisitedReducer from './addVisitedReducer';
 import searchReducer from './searchReducer';
+import showReducer from './showReducer';
 
 const rootReducer = combineReducers({
     allRestoReducer,
     changePageReducer,
     visitedRestaurantsReducer,
     addVisitedReducer,
-    searchReducer
+    searchReducer,
+    showReducer
 });
 
 export default rootReducer;

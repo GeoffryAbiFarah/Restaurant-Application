@@ -20,7 +20,8 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles({
   root: {
     maxWidth: 400,
-    marginTop: '5rem'
+    marginTop: '3rem',
+    marginBottom: '3rem'
   },
   media: {
     height: 140,
@@ -35,6 +36,16 @@ function Restaurant() {
 
     const allRestaurants = useSelector((state) => state.allRestoReducer);
     const searchedRestaurants = useSelector((state) => state.searchReducer);
+
+    const show = useSelector((state) => state.showReducer);
+
+    let restaurants =[];
+    if (show === true){
+        restaurants = allRestaurants;
+    }else{
+        restaurants = searchedRestaurants;
+    }
+
     const classes = useStyles();
 
     const dispatch = useDispatch();
@@ -54,7 +65,7 @@ function Restaurant() {
     return (
         <div>
             <Grid container className={classes.grid}>
-                {allRestaurants.map(resto => (
+                {restaurants.map(resto => (
                     <Grid item key={resto.id} align="center" xs={12} sm={6}>
             <Card  className={classes.root}>
                 <CardActionArea>
