@@ -3,14 +3,16 @@ import SearchBar from './SearchBar';
 import AllRestaurants from './AllRestaurants';
 import SearchedRestaurants from './SearchedRestaurants'
 
+
 function Page1() {
   return (
     <div>
       <SearchBar/>
-      PAGE1
+      <br/>
       <AllRestaurants/>
       <hr/>
       <SearchedRestaurants/>
+      <hr/>
       
     </div>
   );

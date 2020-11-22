@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 
 
 function SearchedRestaurants() {
-
+    
     const searchedRestaurants = useSelector((state) => state.searchReducer);
 
     const dispatch = useDispatch();

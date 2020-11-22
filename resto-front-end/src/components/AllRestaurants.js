@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react';
-import {REQUEST_ALL_RESTOS} from '../types';
 import {useSelector, useDispatch} from 'react-redux';
-import {addVisited} from '../actions/addVisited'
-import {requestAll} from '../actions/restaurantsAction'
+import {addVisited} from '../actions/addVisited';
+import {requestAll} from '../actions/restaurantsAction';
+import Restaurant from './Restaurant';
 
-import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Grid from '@material-ui/core/Grid';
+// import Checkbox from '@material-ui/core/Checkbox';
+// import FormGroup from '@material-ui/core/FormGroup';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import FormControl from '@material-ui/core/FormControl';
+// import Grid from '@material-ui/core/Grid';
 
 function AllRestaurants() {
 
@@ -20,21 +20,22 @@ function AllRestaurants() {
         dispatch(requestAll())
     })
 
-    const handleChange = (e) => {
-        if (e.target.checked){
-            var today = new Date();
-            let day = today.getDate();
-            let month = today.getMonth()+1;
-            let year = today.getFullYear();
-            let restaurant = {name: e.target.value , date: year+"-" +month+"-"+day} 
-            dispatch(addVisited(restaurant));
-            console.log(restaurant)
-        }
-    }
+    // const handleChange = (e) => {
+    //     if (e.target.checked){
+    //         var today = new Date();
+    //         let day = today.getDate();
+    //         let month = today.getMonth()+1;
+    //         let year = today.getFullYear();
+    //         let restaurant = {name: e.target.value , date: year+"-" +month+"-"+day} 
+    //         dispatch(addVisited(restaurant));
+    //         console.log(restaurant)
+    //     }
+    // }
 
   return (
     <div>
-        <Grid container >
+        <Restaurant/>
+        {/* <Grid container >
         {allRestaurants.map(resto => (
             <div key={resto.id}>
                 <Grid item xs={12} sm={6} >
@@ -58,7 +59,7 @@ function AllRestaurants() {
             </div>
         ))}
         
-        </Grid>
+        </Grid> */}
         
     </div>
   );
