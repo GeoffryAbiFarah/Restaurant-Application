@@ -4,7 +4,11 @@ import VisitedRestaurants from './VisitedRestaurants'
 function Page2() {
   return (
     <div>
-        PAGE 2
+        <div >
+          <h3 align="center">
+            VISITED RESTAURANTS
+          </h3>
+        </div>
         <VisitedRestaurants/>
     </div>
   );

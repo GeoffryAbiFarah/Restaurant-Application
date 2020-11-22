@@ -55,8 +55,9 @@ function Restaurant() {
             var today = new Date();
             let day = today.getDate();
             let month = today.getMonth()+1;
+            month = today.toLocaleString('default', { month: 'long' });
             let year = today.getFullYear();
-            let restaurant = {name: e.target.value , date: year+"-" +month+"-"+day} 
+            let restaurant = {name: e.target.value , date: month+ " " + day + ", "+year } 
             dispatch(addVisited(restaurant));
             console.log(restaurant)
         }
