@@ -28,8 +28,7 @@ export const fetchDataSearch = async (param) => {
     }
 }
 
-
-
+// "/restaurant-by-name"
 export const fetchDataSearchName = async (param) => {
     try {
         let nameArray = param.name.split(" ");
@@ -43,7 +42,7 @@ export const fetchDataSearchName = async (param) => {
         console.log(e)
     }
 }
-
+// "/restaurant-by-type"
 export const fetchDataSearchType = async (param) => {
     try {
         let typeParam = param.type;

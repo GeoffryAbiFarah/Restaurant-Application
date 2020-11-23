@@ -5,6 +5,7 @@ import {REQUEST_VISITED_RESTOS, REQUEST_ALL_RESTOS, CHANGE_PAGE1, CHANGE_PAGE1_A
 import { receiveAll } from '../actions/restaurantsAction';
 import {addVisitedSuccess} from '../actions/addVisited';
 import {receiveSearch} from '../actions/searchAction';
+import {loadingAction} from '../actions/loadingAction';
 
 //PAges
 function* page1Async(){
@@ -40,20 +41,23 @@ export function* watchPage1(){
 function* searchAsync(action){
     try {
         let searched = 0;
-    if (action.data.name === ""){
-      searched = yield call (fetchDataSearchType,action.data);
-    }
-    else if (action.data.type === "" || action.data.type === "all"){
-      searched = yield call (fetchDataSearchName,action.data);
-    }
-    else{
-      searched = yield call (fetchDataSearch,action.data);
-    }
+        yield put(loadingAction(true));
+        if (action.data.name === ""){
+        searched = yield call (fetchDataSearchType,action.data);
+        }
+        else if (action.data.type === "" || action.data.type === "all"){
+        searched = yield call (fetchDataSearchName,action.data);
+        }
+        else{
+        searched = yield call (fetchDataSearch,action.data);
+        }
 
-    yield put(receiveSearch(searched));
+        yield put(receiveSearch(searched));
+        yield put(loadingAction(false));
 
     }catch (e){
         console.log(e)
+        yield put(loadingAction(false));
     }
 }
 
@@ -68,11 +72,14 @@ export function* watchSearch(){
 //all Restaurants (Page 1)
 function* allAsync(action){
     try {
+        yield put(loadingAction(true));
         const allResto = yield call (fetchDataAll);
         yield put(receiveAll(allResto));
+        yield put(loadingAction(false));
     }
     catch (e){
         console.log(e)
+        yield put(loadingAction(false));
     }
 }
 
@@ -83,11 +90,14 @@ export function* watchAll(){
 //Visited Restaurants (Page 2)
 function* visitedAsync(){
     try {
+        yield put(loadingAction(true));
         const data = yield call (fetchData);
         yield put(receiveVisited(data));
+        yield put(loadingAction(false));
     }
     catch (e){
         console.log(e)
+        yield put(loadingAction(false));
     }
 }
 
@@ -98,11 +108,14 @@ export function* watchVisited(){
 //add Visited Restaurants CheckBOx
 function* checkedAsync(action){
     try {
+
         yield call (postVisited,action.restaurant);
         yield put(addVisitedSuccess);
+
     }
     catch (e){
         console.log(e)
+
     }
 }
 

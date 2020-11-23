@@ -12,7 +12,7 @@ function AllRestaurants() {
     useEffect(() => {
         dispatch(requestAll())
         // dispatch({type: SHOW_ALL_RESTAURANTS});
-    })
+    }, [])
 
   return (
     <div>

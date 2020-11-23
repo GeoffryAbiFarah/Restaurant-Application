@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {REQUEST_VISITED_RESTOS} from '../types';
 import {useSelector, useDispatch} from 'react-redux';
 
-
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,6 +11,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -33,9 +35,6 @@ const StyledTableRow = withStyles((theme) => ({
 
 
 const useStyles = makeStyles({
-//   table: {
-//     width: "80%"
-//   },
   grid: {
       width: "100%",
       margin: '0px'
@@ -43,6 +42,7 @@ const useStyles = makeStyles({
 });
 
 function VisitedRestaurants() {
+  const isLoading = useSelector(state => state.loadingReducer);
 
     const visited = useSelector((state) => state.visitedRestaurantsReducer);
 
@@ -50,12 +50,21 @@ function VisitedRestaurants() {
 
     useEffect(() => {
         dispatch({type: REQUEST_VISITED_RESTOS})
-    })
+    }, [])
 
     const classes = useStyles();
+  
 
-    return (
+    if (isLoading){
+       return (
+       <Backdrop className={classes.backdrop} open>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+       )}
+    else{
+        return (
         <div>
+             
             <Grid container className={classes.grid} justify="center">
                 <Grid item xs={11} sm={5} align="center">
                 <TableContainer component={Paper} >
@@ -81,18 +90,10 @@ function VisitedRestaurants() {
                 </TableContainer>
                 </Grid>
             </Grid>
-            
-
-            {/* {visited.map(resto => (
-                <div key={resto.id}>
-                    <h1>{resto.name}</h1>
-                    <p>{resto.date }</p>
-                </div>
-                
-            ))} */}
         </div>
-    );
-}
+    )}
+  }
+
 
 export default VisitedRestaurants;
 

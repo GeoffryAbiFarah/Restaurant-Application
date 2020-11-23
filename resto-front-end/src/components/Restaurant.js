@@ -20,9 +20,12 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Pagination from '@material-ui/lab/Pagination';
 import { paginationAction } from '../actions/paginationAction';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 400,
     marginTop: '3rem',
@@ -39,8 +42,13 @@ const useStyles = makeStyles({
   },
   modalImg:{
     width:"100%"
-  }
-});
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
+
 
 const styles = (theme) => ({
   root: {
@@ -74,7 +82,6 @@ const DialogContent = withStyles((theme) => ({
     padding: theme.spacing(2),
   },
 }))(MuiDialogContent);
-
 
 
 //Component
@@ -137,106 +144,110 @@ function Restaurant() {
         }
     }
 
+    const isLoading = useSelector(state => state.loadingReducer)
 
+    if (isLoading){
+       return (
+       <Backdrop className={classes.backdrop} open>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+       )
+    }
+    else{
+      return (
+      <div>
+        <Grid container className={classes.grid}>
+            {currentRestos.map(resto => (
+                <Grid item key={resto.id} align="center" xs={12} sm={6}>
+        <Card  className={classes.root}>
+              <CardActionArea onClick={ () =>{
+                handleClickOpen();
+                handleCurrentResto(resto);
+              }
+              }>
+                <CardMedia
+                className={classes.media}
+                image={resto.image_path}
+                />
 
-    return (
-        <div>
-            <Grid container className={classes.grid}>
-                {currentRestos.map(resto => (
-                    <Grid item key={resto.id} align="center" xs={12} sm={6}>
-            <Card  className={classes.root}>
-                  <CardActionArea onClick={ () =>{
-                    handleClickOpen();
-                    handleCurrentResto(resto);
-                  }
-                  }>
-                    <CardMedia
-                    className={classes.media}
-                    image={resto.image_path}
-                    />
-
-                    </CardActionArea>
-                    <CardActions>
-                        <Typography gutterBottom variant="h5" component="h5">
-                        {resto.name}
-                        </Typography>
-                        
-        
-                        <FormControl component="fieldset">
-                            <FormGroup aria-label="position" row>
-                                <FormControlLabel 
-                                    id={resto.name}
-                                    value={resto.name}
-                                    control={<Checkbox color="secondary" />}
-                                    label="Visited ? "
-                                    labelPlacement="start"
-                                    onChange={handleChange}
-                                />
-                            </FormGroup>
-                        </FormControl>
-                    </CardActions>
-            </Card>
-            
-            </Grid>))}
-            
-            </Grid>
-            {/* Pagination */}
-            <Grid
-              container
-              spacing={0}
-              direction="column"
-              alignItems="center"
-              justify="center"
-              style={{ minHeight: '10vh' }}
-            >
-
-                <Grid item xs={12}>
-                  <Pagination onChange={paginate} count={Math.ceil(restaurants.length / restoPerPage)} showFirstButton showLastButton variant="outlined" shape="rounded" />
-                </Grid>   
-
-            </Grid>
-            
-            
-            {/* Modal Dialog */}
-            <Dialog onClose={handleClose} maxWidth="lg" aria-labelledby="customized-dialog-title" open={open}>
-              <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-              </DialogTitle>
-                  <DialogContent>
-                    <Grid container spacing={5}>
-                      <Grid item xs={12} sm={8} >
-                      <img src={currentResto.image_path} className={classes.modalImg} alt={currentResto.name}/>
-                    </Grid>
+                </CardActionArea>
+                <CardActions>
+                    <Typography gutterBottom variant="h5" component="h5">
+                    {resto.name}
+                    </Typography>
                     
-                    <Grid item xs={12} sm={4}>
-                      <Typography variant="h4" component="h4">
-                        {currentResto.name}
-                      </Typography>
-                      <br/>
-                      <Typography >
-                        Type: {currentResto.type}
-                      </Typography>
-                    <br/>
-                      <Typography gutterBottom>
-                        Average Cost for Two: ${currentResto.cost}
-                      </Typography>
-                      <br/>
-                      <Typography gutterBottom>
-                        Address: {currentResto.address}
-                      </Typography>
-                      <br/>
-                      <Typography gutterBottom>
-                        Phone Number: {currentResto.number}
-                      </Typography>
-                      <br/>
-                    </Grid>
-                    </Grid>
-                  </DialogContent>
-                  </Dialog>
-        </div>
-    )
+                    <FormControl component="fieldset">
+                        <FormGroup aria-label="position" row>
+                            <FormControlLabel 
+                                id={resto.name}
+                                value={resto.name}
+                                control={<Checkbox color="secondary" />}
+                                label="Visited ? "
+                                labelPlacement="start"
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
+                    </FormControl>
+                </CardActions>
+        </Card>
+        
+        </Grid>))}
+        
+        </Grid>
+        {/* Pagination */}
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
+          style={{ minHeight: '10vh' }}
+        >
+
+            <Grid item xs={12}>
+              <Pagination onChange={paginate} count={Math.ceil(restaurants.length / restoPerPage)} showFirstButton showLastButton variant="outlined" shape="rounded" />
+            </Grid>   
+
+        </Grid>
+        
+        {/* Modal Dialog */}
+        <Dialog onClose={handleClose} maxWidth="lg" aria-labelledby="customized-dialog-title" open={open}>
+          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+          </DialogTitle>
+              <DialogContent>
+                <Grid container spacing={5}>
+                  <Grid item xs={12} sm={8} >
+                  <img src={currentResto.image_path} className={classes.modalImg} alt={currentResto.name}/>
+                </Grid>
+                
+                <Grid item xs={12} sm={4}>
+                  <Typography variant="h4" component="h4">
+                    {currentResto.name}
+                  </Typography>
+                  <br/>
+                  <Typography >
+                    Type: {currentResto.type}
+                  </Typography>
+                <br/>
+                  <Typography gutterBottom>
+                    Average Cost for Two: ${currentResto.cost}
+                  </Typography>
+                  <br/>
+                  <Typography gutterBottom>
+                    Address: {currentResto.address}
+                  </Typography>
+                  <br/>
+                  <Typography gutterBottom>
+                    Phone Number: {currentResto.number}
+                  </Typography>
+                  <br/>
+                </Grid>
+                </Grid>
+              </DialogContent>
+              </Dialog>
+    </div>
+      )}
+  
 }
 
 export default Restaurant;
-
-
-

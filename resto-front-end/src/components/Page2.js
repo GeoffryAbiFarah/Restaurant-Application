@@ -1,7 +1,8 @@
-import React from 'react';
-import VisitedRestaurants from './VisitedRestaurants'
+import React, {useSelector} from 'react';
+import VisitedRestaurants from './VisitedRestaurants';
 
 function Page2() {
+
   return (
     <div>
         <div >
@@ -11,7 +12,7 @@ function Page2() {
         </div>
         <VisitedRestaurants/>
     </div>
-  );
+  )
 }
 
 export default Page2;
