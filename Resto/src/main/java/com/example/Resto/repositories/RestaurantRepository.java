@@ -13,10 +13,10 @@ import java.util.UUID;
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, UUID> {
 
-    public List<Restaurant> findByNameIgnoreCaseAndTypeIgnoreCase (String name, String type);
+    public List<Restaurant> findByNameStartingWithIgnoreCaseAndTypeIgnoreCase (String name, String type);
 
     public List<Restaurant> findRestaurantByTypeIgnoreCase (String type);
 
-    public List<Restaurant> findRestaurantByNameIgnoreCase (String name);
+    public List<Restaurant> findRestaurantByNameStartingWithIgnoreCase (String name);
 
 }

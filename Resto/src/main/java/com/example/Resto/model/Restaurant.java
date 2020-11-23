@@ -18,13 +18,13 @@ public class Restaurant {
     @Column(name = "restaurant_address")
     private String address;
     @Column(name = "phone")
-    private int number;
+    private String number;
     @Column(name = "average_cost")
     private double cost;
     @Column(name = "restaurant_image")
     private String image_path;
 
-    public Restaurant(UUID id, String name, String type, String address, int number, double cost, String image_path, boolean visited, String date) {
+    public Restaurant(UUID id, String name, String type, String address, String number, double cost, String image_path, boolean visited, String date) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -52,7 +52,7 @@ public class Restaurant {
         return address;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 

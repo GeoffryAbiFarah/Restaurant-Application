@@ -26,7 +26,7 @@ public class RestaurantService {
     }
 
     public List<Restaurant> getRestaurantByNameAndType (String name, String type){
-        return restaurantRepository.findByNameIgnoreCaseAndTypeIgnoreCase(name,type);
+        return restaurantRepository.findByNameStartingWithIgnoreCaseAndTypeIgnoreCase(name,type);
     }
 
     public List<Restaurant> getRestaurantByType (String type){
@@ -34,7 +34,7 @@ public class RestaurantService {
     }
 
     public List<Restaurant> getRestaurantByName (String name){
-        return restaurantRepository.findRestaurantByNameIgnoreCase(name);
+        return restaurantRepository.findRestaurantByNameStartingWithIgnoreCase(name);
     }
 
     public List<VisitedRestaurant> getAllVisitedRestaurant (){
