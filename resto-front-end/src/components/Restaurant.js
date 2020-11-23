@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {addVisited} from '../actions/addVisited';
 
@@ -16,9 +16,11 @@ import Grid from '@material-ui/core/Grid';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
-// import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import Pagination from '@material-ui/lab/Pagination';
+import { paginationAction } from '../actions/paginationAction';
+
 
 const useStyles = makeStyles({
   root: {
@@ -73,34 +75,55 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-// const DialogActions = withStyles((theme) => ({
-//   root: {
-//     margin: 0,
-//     padding: theme.spacing(1),
-//   },
-// }))(MuiDialogActions);
 
 
 //Component
-
 function Restaurant() {
+    const classes = useStyles();
+    const dispatch = useDispatch();
 
     const allRestaurants = useSelector((state) => state.allRestoReducer);
     const searchedRestaurants = useSelector((state) => state.searchReducer);
 
+    //to choose what to show
     const show = useSelector((state) => state.showReducer);
-
     let restaurants =[];
     if (show === true){
         restaurants = allRestaurants;
     }else{
         restaurants = searchedRestaurants;
+        dispatch(paginationAction(1))
     }
 
-    const classes = useStyles();
 
-    const dispatch = useDispatch();
+    // for pagination
+    const currentPage = useSelector((state) => state.paginationReducer)
+    const [restoPerPage] = useState(4);
 
+    //get current posts
+    const indexOfLastResto = currentPage * restoPerPage;
+    const indexOfFirstResto = indexOfLastResto - restoPerPage;
+    const currentRestos = restaurants.slice(indexOfFirstResto, indexOfLastResto)
+
+    //change page
+    const paginate = (event, value) => {
+      dispatch(paginationAction(value))
+    }
+
+    // for modal
+    const [open, setOpen] = useState(false);
+    const [currentResto, setCurrentResto] = useState({});
+    const handleClickOpen = () => { 
+      setOpen(true); 
+    };
+    const handleCurrentResto = (resto) =>{
+      setCurrentResto(resto)
+    }
+    const handleClose = () => { setOpen(false); };
+
+
+    
+    // for adding visited
     const handleChange = (e) => {
         if (e.target.checked){
             var today = new Date();
@@ -114,20 +137,12 @@ function Restaurant() {
         }
     }
 
-    const [open, setOpen] = React.useState(false);
-    const [currentResto, setCurrentResto] = React.useState({});
-    const handleClickOpen = () => { 
-      setOpen(true); 
-    };
-    const handleCurrentResto = (resto) =>{
-      setCurrentResto(resto)
-    }
-    const handleClose = () => { setOpen(false); };
+
 
     return (
         <div>
             <Grid container className={classes.grid}>
-                {restaurants.map(resto => (
+                {currentRestos.map(resto => (
                     <Grid item key={resto.id} align="center" xs={12} sm={6}>
             <Card  className={classes.root}>
                   <CardActionArea onClick={ () =>{
@@ -163,11 +178,28 @@ function Restaurant() {
             </Card>
             
             </Grid>))}
+            
             </Grid>
+            {/* Pagination */}
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center"
+              style={{ minHeight: '10vh' }}
+            >
 
+                <Grid item xs={12}>
+                  <Pagination onChange={paginate} count={Math.ceil(restaurants.length / restoPerPage)} showFirstButton showLastButton variant="outlined" shape="rounded" />
+                </Grid>   
+
+            </Grid>
+            
+            
+            {/* Modal Dialog */}
             <Dialog onClose={handleClose} maxWidth="lg" aria-labelledby="customized-dialog-title" open={open}>
               <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                 
               </DialogTitle>
                   <DialogContent>
                     <Grid container spacing={5}>

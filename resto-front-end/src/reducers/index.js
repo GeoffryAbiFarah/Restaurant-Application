@@ -5,6 +5,7 @@ import visitedRestaurantsReducer from './visitedRestaurantsReducer';
 import addVisitedReducer from './addVisitedReducer';
 import searchReducer from './searchReducer';
 import showReducer from './showReducer';
+import paginationReducer from './paginationReducer';
 
 const rootReducer = combineReducers({
     allRestoReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     visitedRestaurantsReducer,
     addVisitedReducer,
     searchReducer,
-    showReducer
+    showReducer,
+    paginationReducer
 });
 
 export default rootReducer;
