@@ -25,3 +25,5 @@ export const PAGINATION_NUMBER = 'PAGINATION_NUMBER';
 
 export const LOADING = 'LOADING';
 
+export const SHOW_ERROR = 'SHOW_ERROR';
+export const CLEAR_ERROR = 'CLEAR_ERROR';

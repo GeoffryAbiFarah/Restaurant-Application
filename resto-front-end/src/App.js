@@ -1,5 +1,6 @@
 
 import Container from './components/Container';
+import ErrorSnackbar from './components/ErrorSnackbar'
 
 
 
@@ -7,6 +8,7 @@ import Container from './components/Container';
 function App() {
   return (
       <div>
+        <ErrorSnackbar/>
         <Container/>
     </div>
   );

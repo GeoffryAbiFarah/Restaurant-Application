@@ -6,6 +6,7 @@ import { receiveAll } from '../actions/restaurantsAction';
 import {addVisitedSuccess} from '../actions/addVisited';
 import {receiveSearch} from '../actions/searchAction';
 import {loadingAction} from '../actions/loadingAction';
+import {errorAction} from '../actions/errorAction';
 
 //PAges
 function* page1Async(){
@@ -56,8 +57,9 @@ function* searchAsync(action){
         yield put(loadingAction(false));
 
     }catch (e){
-        console.log(e)
+        console.log("Caught the error :"+e)
         yield put(loadingAction(false));
+        yield put(errorAction("Error fetching restaurants !"))
     }
 }
 
@@ -78,8 +80,9 @@ function* allAsync(action){
         yield put(loadingAction(false));
     }
     catch (e){
-        console.log(e)
+        console.log("Caught the error :"+e)
         yield put(loadingAction(false));
+        yield put(errorAction("Error fetching restaurants !"))
     }
 }
 
@@ -96,8 +99,9 @@ function* visitedAsync(){
         yield put(loadingAction(false));
     }
     catch (e){
-        console.log(e)
+        console.log("Caught the error :"+e)
         yield put(loadingAction(false));
+        yield put(errorAction("Error fetching visited restaurants !"))
     }
 }
 
@@ -114,8 +118,8 @@ function* checkedAsync(action){
 
     }
     catch (e){
-        console.log(e)
-
+        console.log("Caught the error :"+e)
+        yield put(errorAction("Error adding visited restaurants !"))
     }
 }
 

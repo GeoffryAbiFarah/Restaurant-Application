@@ -7,6 +7,7 @@ import searchReducer from './searchReducer';
 import showReducer from './showReducer';
 import paginationReducer from './paginationReducer';
 import loadingReducer from './loadingReducer';
+import errorReducer from './errorReducer';
 
 const rootReducer = combineReducers({
     allRestoReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     searchReducer,
     showReducer,
     paginationReducer,
-    loadingReducer
+    loadingReducer,
+    errorReducer
 });
 
 export default rootReducer;
