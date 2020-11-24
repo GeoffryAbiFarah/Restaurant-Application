@@ -1,7 +1,7 @@
 import {takeEvery, put, takeLatest, call} from 'redux-saga/effects';
 import {fetchData, fetchDataAll, postVisited, fetchDataSearch, fetchDataSearchName, fetchDataSearchType} from '../api';
 import {receiveVisited} from '../actions/visitedAction';
-import {REQUEST_VISITED_RESTOS, REQUEST_ALL_RESTOS, CHANGE_PAGE1, CHANGE_PAGE1_ASYNC, CHECKED, REQUEST_SEARCHED_RESTOS} from '../types';
+import {REQUEST_VISITED_RESTOS, REQUEST_ALL_RESTOS, CHECKED, REQUEST_SEARCHED_RESTOS} from '../types';
 import { receiveAll } from '../actions/restaurantsAction';
 import {addVisitedSuccess} from '../actions/addVisited';
 import {receiveSearch} from '../actions/searchAction';
@@ -9,13 +9,13 @@ import {loadingAction} from '../actions/loadingAction';
 import {errorAction} from '../actions/errorAction';
 
 //PAges
-function* page1Async(){
-    yield put({type: CHANGE_PAGE1_ASYNC});
-}
+// function* page1Async(){
+//     yield put({type: CHANGE_PAGE1_ASYNC});
+// }
 
-export function* watchPage1(){
-    yield takeEvery(CHANGE_PAGE1, page1Async);
-}
+// export function* watchPage1(){
+//     yield takeEvery(CHANGE_PAGE1, page1Async);
+// }
 
 
 // //searched Restaurants (Page1)
