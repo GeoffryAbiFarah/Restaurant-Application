@@ -47,6 +47,14 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
+  card:{
+    backgroundColor: theme.palette.primary.light,
+    color: "white"
+  },
+  check :{
+    color: theme.palette.secondary.light,
+    
+  }
 }));
 
 
@@ -171,7 +179,7 @@ function Restaurant() {
                 />
 
                 </CardActionArea>
-                <CardActions>
+                <CardActions className={classes.card}>
                     <Typography gutterBottom variant="h5" component="h5">
                     {resto.name}
                     </Typography>
@@ -181,7 +189,7 @@ function Restaurant() {
                             <FormControlLabel 
                                 id={resto.name}
                                 value={resto.name}
-                                control={<Checkbox color="secondary" />}
+                                control={<Checkbox className={classes.check}  />}
                                 label="Visited ? "
                                 labelPlacement="start"
                                 onChange={handleChange}

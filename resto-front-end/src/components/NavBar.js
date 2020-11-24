@@ -7,6 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import {useDispatch} from 'react-redux';
 import {CHANGE_PAGE1,CHANGE_PAGE2} from '../types';
 
+
+
+
 function NavBar (){
   // const { page } = useSelector((state) => state.changePageReducer);
   const dispatch = useDispatch();

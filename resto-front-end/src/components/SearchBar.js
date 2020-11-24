@@ -57,20 +57,22 @@ const SearchBar = () => {
 
   return (
     <div >
-      <AppBar position="static" color="default" >
+      <AppBar position="static" color="primary" >
         <Toolbar >
-      <Grid container >
-        <Grid item xs={12} sm={4}>
+      <Grid container spacing={4}>
+        <Grid item xs={12} sm={6} >
           <Grid container justify="center" >
-            <TextField  color="secondary" id = "name-id" label="Search" variant="outlined"/>
+            <TextField style={{backgroundColor:"white"}} fullWidth color="secondary" id = "name-id" label="Search" variant="outlined"/>
           </Grid>
         </Grid>
             
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={3}>
           <Grid container justify="center">
-            <FormControl variant="outlined" >
-              <InputLabel >Types</InputLabel>
+            <FormControl variant="outlined" fullWidth color="secondary">
+              <InputLabel>Types</InputLabel>
                 <Select
+                style={{backgroundColor:"white"}}
+                color="secondary"
                   native
                   label="Type"
                   id = "type-id"
@@ -81,14 +83,14 @@ const SearchBar = () => {
                   <option value={'italien'}>Italien</option>
                   <option value={'chinese'}>Chinese</option>
                 </Select>
-      </FormControl>
+              </FormControl>
 
           </Grid>
         </Grid>
             
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={3}>
           <Grid container justify="center">
-            <Button onClick={handleSubmit} variant="contained" color="secondary">Search</Button>
+            <Button onClick={handleSubmit}  size="large"  variant="contained" color="secondary">Search</Button>
           </Grid>
         </Grid>
       </Grid>
